@@ -213,7 +213,7 @@
   .social-link:hover { background: var(--accent); color: white; border-color: var(--accent); }
   .map-container iframe { width: 100%; height: 380px; display: block; border: 0; border-radius: 2px; }
 
-  /* FOOTER - BEYAZ ARKA PLAN, SİYAH YAZILAR, LOGO DÜZELTİLDİ (FİLTER KALDIRILDI) */
+  /* FOOTER */
   footer {
     background: #ffffff;
     border-top: 1px solid #e2e2e2;
@@ -230,24 +230,13 @@
     gap: 20px;
     width: 100%;
   }
-  .footer-logo {
-    display: flex;
-    align-items: center;
-  }
-  .footer-logo img {
-    height: 42px;
-    width: auto;
-    object-fit: contain;
-    /* FİLTER KALDIRILDI - logo orijinal renkleriyle görünecek */
-    opacity: 0.9;
-    transition: opacity 0.2s;
-  }
+  .footer-logo img { height: 42px; width: auto; object-fit: contain; opacity: 0.9; transition: opacity 0.2s; }
   .footer-links { display: flex; gap: 28px; flex-wrap: wrap; }
   .footer-links a { color: #1f1f1f; text-decoration: none; font-size: 10px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.2s; }
   .footer-links a:hover { color: #555; }
   .footer-copy { font-size: 10px; letter-spacing: 0.05em; color: #2c2c2c; }
 
-  /* FLOATING BUTTONS: HEMEN ARA + WHATSAPP */
+  /* FLOATING BUTTONS */
   .floating-buttons {
     position: fixed;
     bottom: 1.5rem;
@@ -272,10 +261,7 @@
     font-size: 1.6rem;
   }
   .float-btn:hover { transform: scale(1.05); box-shadow: 0 6px 16px rgba(0,0,0,0.2); }
-  .call-now-btn {
-    background-color: #1a1a1a;
-    color: white;
-  }
+  .call-now-btn { background-color: #1a1a1a; color: white; }
   .whatsapp-btn { background-color: #25D366; color: white; }
 
   @media (max-width: 1100px) { .product-grid { grid-template-columns: repeat(3, 1fr); } }
@@ -292,7 +278,6 @@
     .contact-grid { grid-template-columns: 1fr; gap: 40px; }
     footer { padding: 30px 20px; }
     .footer-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
-    .footer-logo img { height: 36px; }
     .float-btn { width: 48px; height: 48px; font-size: 1.4rem; }
   }
   @media (max-width: 480px) { .product-grid { grid-template-columns: 1fr; } .product-item { aspect-ratio: 4/5; } }
@@ -302,10 +287,10 @@
 
 <header id="mainHeader">
   <div class="lang-bar">
-    <button class="lang-btn active" onclick="setLang('tr')"><span class="flag">🇹🇷</span> Türkçe</button>
-    <button class="lang-btn" onclick="setLang('en')"><span class="flag">🇬🇧</span> English</button>
-    <button class="lang-btn" onclick="setLang('ru')"><span class="flag">🇷🇺</span> Русский</button>
-    <button class="lang-btn" onclick="setLang('es')"><span class="flag">🇪🇸</span> Español</button>
+    <button class="lang-btn" data-lang="tr">🇹🇷 Türkçe</button>
+    <button class="lang-btn" data-lang="en">🇬🇧 English</button>
+    <button class="lang-btn" data-lang="ru">🇷🇺 Русский</button>
+    <button class="lang-btn" data-lang="es">🇪🇸 Español</button>
   </div>
   <div class="header-inner">
     <a href="#" class="logo"><img src="https://www.u7studiofashion.com/images/logo.webp" alt="U7 Studio Fashion Logo"></a>
@@ -313,7 +298,7 @@
     <button class="hamburger" id="hamburger" aria-label="Menü" onclick="toggleMenu()"><span></span><span></span><span></span></button>
   </div>
 </header>
-<div class="mobile-nav" id="mobileNav"><a href="#kurumsal" onclick="toggleMenu()">Kurumsal</a><a href="#koleksiyon" onclick="toggleMenu()">Koleksiyon</a><a href="#iletisim" onclick="toggleMenu()">İletişim</a></div>
+<div class="mobile-nav" id="mobileNav"><a href="#kurumsal" class="mobile-kurumsal" onclick="toggleMenu()">Kurumsal</a><a href="#koleksiyon" class="mobile-koleksiyon" onclick="toggleMenu()">Koleksiyon</a><a href="#iletisim" class="mobile-iletisim" onclick="toggleMenu()">İletişim</a></div>
 
 <section class="collection-hero" id="koleksiyon"><p class="collection-eyebrow eyebrow">U7 Studio Fashion</p><h1 class="collection-title"><strong>2026</strong> <span class="title-shop">U7 Shop</span></h1><div class="divider"></div></section>
 <div class="section-label"><span class="label-koleksiyon">Koleksiyon</span></div>
@@ -321,43 +306,9 @@
 
 <div class="lightbox" id="lightbox" onclick="closeLightboxOutside(event)"><div class="lightbox-inner"><button class="lightbox-close" onclick="closeLightbox()">✕</button><img id="lightboxImg" src="" alt="Ürün Detay"><div class="lightbox-cta"><a href="https://wa.me/905348118440" target="_blank" class="btn-whatsapp"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg><span class="cta-order">WhatsApp Sipariş</span></a><a href="tel:02124380937" class="btn-call"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.09a16 16 0 006 6l.27-.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg><span class="cta-call">Hemen Ara</span></a></div></div></div>
 
-<!-- VERTICAL VIDEOS + SEO MAKALELER (ALT ALTA) -->
-<div class="vertical-video-articles">
-  <div class="video-article-block">
-    <div class="video-block"><video src="https://www.u7studiofashion.com/images/1.mp4" autoplay muted loop playsinline></video></div>
-    <div class="seo-article">
-      <h3>✨ 2026 Moda Trendleri: U7 Studio Farkı</h3>
-      <p>2026 yılı, minimalizm ve cesur dokuların buluştuğu bir dönem olarak moda dünyasında iz bırakıyor. U7 Studio Fashion, sürdürülebilir kumaşlar ve yenilikçi kesimlerle yeni sezon elbiselerinde sofistike çizgiler sunuyor. Sezonun öne çıkan parçaları arasında dökümlü ipek elbiseler, asimetrik etek boyları ve pastel tonlar ile toprak tonlarının uyumu yer alıyor. Modayı yakından takip edenler için U7 Studio koleksiyonu, her gardırobun vazgeçilmezi olacak.</p>
-    </div>
-  </div>
-  <div class="video-article-block">
-    <div class="video-block"><video src="https://www.u7studiofashion.com/images/2.mp4" autoplay muted loop playsinline></video></div>
-    <div class="seo-article">
-      <h3>👗 Geleceğin Elbise Siluetleri: U7 Studio 2026</h3>
-      <p>Gelecek yılın modasında özgürlük ve ifade ön planda. U7 Studio Fashion'in 2026 koleksiyonunda bol hacimli kollardan, vücudu saran kesimlere kadar geniş bir yelpaze bulunuyor. Özellikle gece elbiselerinde transparan detaylar, taş işlemeler ve modern drapeler dikkat çekiyor. Modayı yakından takip eden moda tutkunları, "2026 moda elbiseler" aramalarında U7 Studio'nin sofistike tasarımlarını keşfediyor. Siz de yeni sezonu önceden yakalayın.</p>
-    </div>
-  </div>
-  <div class="video-article-block">
-    <div class="video-block"><video src="https://www.u7studiofashion.com/images/3.mp4" autoplay muted loop playsinline></video></div>
-    <div class="seo-article">
-      <h3>💎 U7 Studio ile Zarafetin Yeniden Tanımı</h3>
-      <p>Moda dünyasında her mevsim yenilik arayanlar için U7 Studio Fashion, ilham veren bir durak. 2026 ilkbahar-yaz koleksiyonunda akıcı kumaşlar, doğal taş aksanları ve butik işçilik öne çıkıyor. Modayı yakından takip etmek isteyenler için backstage görüntüleri ve tasarım süreçleriyle ilham veriyoruz. "2026 moda elbiseler" arayanlar için U7 Studio, trendlerin ötesinde zamansız şıklık sunuyor. Stilini önemseyen herkes bu koleksiyona bayılacak.</p>
-    </div>
-  </div>
-  <div class="video-article-block">
-    <div class="video-block"><video src="https://www.u7studiofashion.com/images/4.mp4" autoplay muted loop playsinline></video></div>
-    <div class="seo-article">
-      <h3>📸 Red Carpet’tan Günlük Stile: U7 Studio Elbiseleri</h3>
-      <p>2026 moda öngörüleri, kıyafetlerde çok yönlülüğü işaret ediyor. U7 Studio Fashion, gündüz şıklığından akşam davetlerine uzanan elbiseleriyle her anınıza eşlik ediyor. Özellikle yenilikçi kesimler ve cesur renk paletleri, markayı modaseverlerin ilk sırasına taşıyor. Modayı yakından takip etmek isteyenler için U7 Studio, her koleksiyonunda sürprizler sunuyor. 2026'nın en gözde parçaları sizi bekliyor.</p>
-    </div>
-  </div>
-  <div class="video-article-block">
-    <div class="video-block"><video src="https://www.u7studiofashion.com/images/5.mp4" autoplay muted loop playsinline></video></div>
-    <div class="seo-article">
-      <h3>🌟 U7 Studio Fashion: 2026'nın En İlham Veren Trendleri</h3>
-      <p>Moda dinamiklerinin hızla değiştiği günümüzde U7 Studio Fashion, öncü ruhuyla dikkat çekiyor. Yeni sezon koleksiyonunda vintage dokunuşlar, futuristik aksesuarlar ve ekolojik kumaşlar harmanlanıyor. 2026 moda elbiseler arasında fark yaratmak isteyenler için özel tasarım modeller ve sınırlı sayıdaki parçalar büyük ilgi görüyor. Modayı yakından takip eden influencer'ların favorisi U7 Studio, stilinizi evrimleştirecek.</p>
-    </div>
-  </div>
+<!-- VERTICAL VIDEOS + SEO MAKALELER (ÇOK DİLLİ İÇERİKLER) -->
+<div class="vertical-video-articles" id="dynamicArticles">
+  <!-- js ile doldurulacak makale ve video blokları -->
 </div>
 
 <!-- İLETİŞİM -->
@@ -369,36 +320,159 @@
 <div class="social-row"><a href="https://www.instagram.com/u7.studiofashion" target="_blank" class="social-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg><span class="ig-text">Instagram</span></a><a href="https://wa.me/905348118440" target="_blank" class="social-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg><span class="wp-text">WhatsApp</span></a></div></div>
 <div class="map-container"><iframe src="https://yandex.com.tr/map-widget/v1/org/cem_is_merkezi/26709226994/?ll=28.913203%2C41.046218&z=16" width="560" height="380" frameborder="0" allowfullscreen title="U7 Studio Fashion Konum" loading="lazy"></iframe></div></div></section>
 
-<!-- FOOTER BEYAZ, LOGO ARTIK SİYAH DEĞİL (ORİJİNAL RENGİNDE) -->
 <footer><div class="footer-inner"><div class="footer-logo"><img src="https://www.u7studiofashion.com/images/logo.webp" alt="U7 Studio Fashion"></div><nav class="footer-links"><a href="#kurumsal" class="footer-kurumsal">Kurumsal</a><a href="#koleksiyon" class="footer-koleksiyon">Koleksiyon</a><a href="#iletisim" class="footer-iletisim">İletişim</a><a href="https://www.instagram.com/u7.studiofashion" target="_blank" class="footer-ig">Instagram</a></nav><p class="footer-copy">© 2026 U7 Studio Fashion. Tüm hakları saklıdır.</p></div></footer>
 
-<!-- SAĞ ALT: HEMEN ARA + WHATSAPP -->
 <div class="floating-buttons">
   <a href="tel:02124380937" class="float-btn call-now-btn" aria-label="Hemen Ara"><i class="fas fa-phone-alt"></i></a>
   <a href="https://wa.me/905348118440?text=Merhaba,%20U7%20Studio%20Fashion%20web%20sitenizden%20ulaşıyorum!" class="float-btn whatsapp-btn" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
 </div>
 
 <script>
+  // Ürün gridini oluştur
   const productImages = Array.from({length:10}, (_,i)=> `https://www.u7studiofashion.com/images/${i+1}.webp`);
   const productGrid = document.querySelector('.product-grid');
   productGrid.innerHTML = productImages.map(src => `<article class="product-item" onclick="openLightbox(this)"><img src="${src}" alt="U7 Studio Fashion Ürün" loading="lazy"></article>`).join('');
   
+  // Intersection Observer
   const observer = new IntersectionObserver((entries) => { entries.forEach((entry, i) => { if(entry.isIntersecting) { setTimeout(() => entry.target.classList.add('visible'), i * 60); observer.unobserve(entry.target); } }); }, { threshold: 0.1 });
   document.querySelectorAll('.product-item').forEach(el => observer.observe(el));
   
+  // Lightbox fonksiyonları
   function openLightbox(el) { const img = el.querySelector('img'); if(img) { document.getElementById('lightboxImg').src = img.src; document.getElementById('lightbox').classList.add('open'); document.body.style.overflow = 'hidden'; } }
   function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); document.body.style.overflow = ''; }
   function closeLightboxOutside(e) { if (e.target === document.getElementById('lightbox')) closeLightbox(); }
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
-  
   window.addEventListener('scroll', () => { document.getElementById('mainHeader').classList.toggle('shrunk', window.scrollY > 60); });
   function toggleMenu() { const btn = document.getElementById('hamburger'); const nav = document.getElementById('mobileNav'); if(btn && nav) { btn.classList.toggle('open'); nav.classList.toggle('open'); } }
   
-  const translations = { tr: { nav1:'Kurumsal', nav2:'Koleksiyon', nav3:'İletişim', eyebrow:'U7 Studio Fashion', h1strong:'2026', titleShop:'U7 Shop', labelKoleksiyon:'Koleksiyon', labelIletisim:'İletişim', contactTitle:'Bize Ulaşın', adresLabel:'Adres', adresText:'YENİDOĞAN MAH. KARAKAŞ SK. CEM İŞ MERKEZİ<br>NO: 1-3 İÇ KAPI NO:201<br>BAYRAMPAŞA / İSTANBUL', telLabel:'Telefon', wpLabel:'WhatsApp', ctaOrder:'WhatsApp Sipariş', ctaCall:'Hemen Ara', igText:'Instagram', wpText:'WhatsApp', footerKurumsal:'Kurumsal', footerKoleksiyon:'Koleksiyon', footerIletisim:'İletişim', footerIg:'Instagram', footerCopy:'© 2026 U7 Studio Fashion. Tüm hakları saklıdır.' }, en: { nav1:'Corporate', nav2:'Collection', nav3:'Contact', eyebrow:'U7 Studio Fashion', h1strong:'2026', titleShop:'U7 Shop', labelKoleksiyon:'Collection', contactTitle:'Get In Touch', adresText:'YENİDOĞAN MAH. KARAKAŞ SK. CEM BUSINESS CENTER<br>NO: 1-3 INT. DOOR:201<br>BAYRAMPAŞA / ISTANBUL', telLabel:'Phone', wpLabel:'WhatsApp', ctaOrder:'WhatsApp Order', ctaCall:'Call Now', igText:'Instagram', wpText:'WhatsApp', footerKurumsal:'Corporate', footerKoleksiyon:'Collection', footerIletisim:'Contact', footerIg:'Instagram', footerCopy:'© 2026 U7 Studio Fashion. All rights reserved.' }, ru: { nav1:'О компании', nav2:'Коллекция', nav3:'Контакты', eyebrow:'U7 Studio Fashion', h1strong:'2026', titleShop:'U7 Shop', labelKoleksiyon:'Коллекция', contactTitle:'Свяжитесь с нами', adresText:'МАХ. ЕНИДОАН, УЛ. КАРАКА, БИЗ. ЦЕНТР CEM<br>НОМ: 1-3, ВН. ДВЕРЬ: 201<br>БАЙРАМПАША / СТАМБУЛ', telLabel:'Телефон', wpLabel:'WhatsApp', ctaOrder:'Заказ WhatsApp', ctaCall:'Позвонить', igText:'Instagram', wpText:'WhatsApp', footerKurumsal:'О компании', footerKoleksiyon:'Коллекция', footerIletisim:'Контакты', footerIg:'Instagram', footerCopy:'© 2026 U7 Studio Fashion. Все права защищены.' }, es: { nav1:'Corporativo', nav2:'Colección', nav3:'Contacto', eyebrow:'U7 Studio Fashion', h1strong:'2026', titleShop:'U7 Shop', labelKoleksiyon:'Colección', contactTitle:'Contáctenos', adresText:'MAH. YENIDOĞAN, CALLE KARAKAŞ, CENTRO CEM<br>N.º: 1-3 PUERTA INT.: 201<br>BAYRAMPAŞA / ESTAMBUL', telLabel:'Teléfono', wpLabel:'WhatsApp', ctaOrder:'Pedido WhatsApp', ctaCall:'Llamar ahora', igText:'Instagram', wpText:'WhatsApp', footerKurumsal:'Corporativo', footerKoleksiyon:'Colección', footerIletisim:'Contacto', footerIg:'Instagram', footerCopy:'© 2026 U7 Studio Fashion. Todos los derechos reservados.' } };
+  // TAM ÇOK DİLLİ VERİLER (MENU, HERO, LABEL, CONTACT, FOOTER, MAKALELER)
+  const langData = {
+    tr: {
+      nav1:'Kurumsal', nav2:'Koleksiyon', nav3:'İletişim', eyebrow:'U7 Studio Fashion', h1strong:'2026', titleShop:'U7 Shop',
+      labelKoleksiyon:'Koleksiyon', labelIletisim:'İletişim', contactTitle:'Bize Ulaşın', adresLabel:'Adres',
+      adresText:'YENİDOĞAN MAH. KARAKAŞ SK. CEM İŞ MERKEZİ<br>NO: 1-3 İÇ KAPI NO:201<br>BAYRAMPAŞA / İSTANBUL',
+      telLabel:'Telefon', wpLabel:'WhatsApp', ctaOrder:'WhatsApp Sipariş', ctaCall:'Hemen Ara', igText:'Instagram', wpText:'WhatsApp',
+      footerKurumsal:'Kurumsal', footerKoleksiyon:'Koleksiyon', footerIletisim:'İletişim', footerIg:'Instagram', footerCopy:'© 2026 U7 Studio Fashion. Tüm hakları saklıdır.',
+      articles: [
+        { title:"✨ 2026 Moda Trendleri: U7 Studio Farkı", content:"2026 yılı, minimalizm ve cesur dokuların buluştuğu bir dönem olarak moda dünyasında iz bırakıyor. U7 Studio Fashion, sürdürülebilir kumaşlar ve yenilikçi kesimlerle yeni sezon elbiselerinde sofistike çizgiler sunuyor. Sezonun öne çıkan parçaları arasında dökümlü ipek elbiseler, asimetrik etek boyları ve pastel tonlar ile toprak tonlarının uyumu yer alıyor. Modayı yakından takip edenler için U7 Studio koleksiyonu, her gardırobun vazgeçilmezi olacak." },
+        { title:"👗 Geleceğin Elbise Siluetleri: U7 Studio 2026", content:"Gelecek yılın modasında özgürlük ve ifade ön planda. U7 Studio Fashion'in 2026 koleksiyonunda bol hacimli kollardan, vücudu saran kesimlere kadar geniş bir yelpaze bulunuyor. Özellikle gece elbiselerinde transparan detaylar, taş işlemeler ve modern drapeler dikkat çekiyor. Modayı yakından takip eden moda tutkunları, '2026 moda elbiseler' aramalarında U7 Studio'nin sofistike tasarımlarını keşfediyor. Siz de yeni sezonu önceden yakalayın." },
+        { title:"💎 U7 Studio ile Zarafetin Yeniden Tanımı", content:"Moda dünyasında her mevsim yenilik arayanlar için U7 Studio Fashion, ilham veren bir durak. 2026 ilkbahar-yaz koleksiyonunda akıcı kumaşlar, doğal taş aksanları ve butik işçilik öne çıkıyor. Modayı yakından takip etmek isteyenler için backstage görüntüleri ve tasarım süreçleriyle ilham veriyoruz. '2026 moda elbiseler' arayanlar için U7 Studio, trendlerin ötesinde zamansız şıklık sunuyor. Stilini önemseyen herkes bu koleksiyona bayılacak." },
+        { title:"📸 Red Carpet’tan Günlük Stile: U7 Studio Elbiseleri", content:"2026 moda öngörüleri, kıyafetlerde çok yönlülüğü işaret ediyor. U7 Studio Fashion, gündüz şıklığından akşam davetlerine uzanan elbiseleriyle her anınıza eşlik ediyor. Özellikle yenilikçi kesimler ve cesur renk paletleri, markayı modaseverlerin ilk sırasına taşıyor. Modayı yakından takip etmek isteyenler için U7 Studio, her koleksiyonunda sürprizler sunuyor. 2026'nın en gözde parçaları sizi bekliyor." },
+        { title:"🌟 U7 Studio Fashion: 2026'nın En İlham Veren Trendleri", content:"Moda dinamiklerinin hızla değiştiği günümüzde U7 Studio Fashion, öncü ruhuyla dikkat çekiyor. Yeni sezon koleksiyonunda vintage dokunuşlar, futuristik aksesuarlar ve ekolojik kumaşlar harmanlanıyor. 2026 moda elbiseler arasında fark yaratmak isteyenler için özel tasarım modeller ve sınırlı sayıdaki parçalar büyük ilgi görüyor. Modayı yakından takip eden influencer'ların favorisi U7 Studio, stilinizi evrimleştirecek." }
+      ]
+    },
+    en: {
+      nav1:'Corporate', nav2:'Collection', nav3:'Contact', eyebrow:'U7 Studio Fashion', h1strong:'2026', titleShop:'U7 Shop',
+      labelKoleksiyon:'Collection', labelIletisim:'Contact', contactTitle:'Get In Touch', adresLabel:'Address',
+      adresText:'YENİDOĞAN MAH. KARAKAŞ SK. CEM BUSINESS CENTER<br>NO: 1-3 INT. DOOR:201<br>BAYRAMPAŞA / ISTANBUL',
+      telLabel:'Phone', wpLabel:'WhatsApp', ctaOrder:'WhatsApp Order', ctaCall:'Call Now', igText:'Instagram', wpText:'WhatsApp',
+      footerKurumsal:'Corporate', footerKoleksiyon:'Collection', footerIletisim:'Contact', footerIg:'Instagram', footerCopy:'© 2026 U7 Studio Fashion. All rights reserved.',
+      articles: [
+        { title:"✨ 2026 Fashion Trends: The U7 Studio Difference", content:"The year 2026 leaves its mark on the fashion world as a period where minimalism meets bold textures. U7 Studio Fashion offers sophisticated lines in new season dresses with sustainable fabrics and innovative cuts. Highlights of the season include flowing silk dresses, asymmetrical hemlines, and the harmony of pastel and earth tones. For those who follow fashion closely, the U7 Studio collection will be an indispensable part of every wardrobe." },
+        { title:"👗 Future Dress Silhouettes: U7 Studio 2026", content:"Freedom and expression take center stage in next year's fashion. U7 Studio Fashion's 2026 collection features a wide range from voluminous sleeves to body-hugging cuts. Transparent details, stone embellishments and modern drapes stand out especially in evening dresses. Fashion enthusiasts following trends closely discover U7 Studio's sophisticated designs when searching for '2026 fashion dresses'. Catch the new season in advance." },
+        { title:"💎 Redefining Elegance with U7 Studio", content:"For those seeking innovation every season, U7 Studio Fashion is an inspiring stop. In the Spring/Summer 2026 collection, fluid fabrics, natural stone accents and boutique craftsmanship come to the fore. We provide inspiration with backstage glimpses and design processes for those who want to follow fashion closely. For those looking for '2026 fashion dresses', U7 Studio offers timeless elegance beyond trends. Anyone who cares about style will love this collection." },
+        { title:"📸 From Red Carpet to Daily Style: U7 Studio Dresses", content:"2026 fashion forecasts point to versatility in clothing. U7 Studio Fashion accompanies every moment of your life with dresses ranging from daytime chic to evening parties. Innovative cuts and bold color palettes carry the brand to the top of fashion lovers' lists. For those who want to follow fashion closely, U7 Studio offers surprises in every collection. The most popular pieces of 2026 await you." },
+        { title:"🌟 U7 Studio Fashion: The Most Inspiring Trends of 2026", content:"In today's rapidly changing fashion dynamics, U7 Studio Fashion stands out with its pioneering spirit. The new season collection blends vintage touches, futuristic accessories and ecological fabrics. Special design models and limited pieces attract great attention for those who want to make a difference among 2026 fashion dresses. U7 Studio, the favorite of influencers who follow fashion closely, will evolve your style." }
+      ]
+    },
+    ru: {
+      nav1:'О компании', nav2:'Коллекция', nav3:'Контакты', eyebrow:'U7 Studio Fashion', h1strong:'2026', titleShop:'U7 Shop',
+      labelKoleksiyon:'Коллекция', labelIletisim:'Контакты', contactTitle:'Свяжитесь с нами', adresLabel:'Адрес',
+      adresText:'МАХ. ЕНИДОАН, УЛ. КАРАКА, БИЗ. ЦЕНТР CEM<br>НОМ: 1-3, ВН. ДВЕРЬ: 201<br>БАЙРАМПАША / СТАМБУЛ',
+      telLabel:'Телефон', wpLabel:'WhatsApp', ctaOrder:'Заказ WhatsApp', ctaCall:'Позвонить', igText:'Instagram', wpText:'WhatsApp',
+      footerKurumsal:'О компании', footerKoleksiyon:'Коллекция', footerIletisim:'Контакты', footerIg:'Instagram', footerCopy:'© 2026 U7 Studio Fashion. Все права защищены.',
+      articles: [
+        { title:"✨ Тренды моды 2026: Разница U7 Studio", content:"2026 год оставляет след в мире моды как период, где минимализм встречается со смелыми текстурами. U7 Studio Fashion предлагает изысканные линии в платьях нового сезона с использованием устойчивых тканей и инновационных кроев. Среди главных особенностей сезона — струящиеся шелковые платья, асимметричные подолы и гармония пастельных и земляных тонов. Для тех, кто следит за модой, коллекция U7 Studio станет незаменимой частью любого гардероба." },
+        { title:"👗 Силуэты платьев будущего: U7 Studio 2026", content:"В моде следующего года на передний план выходят свобода и самовыражение. Коллекция U7 Studio Fashion 2026 включает широкий спектр: от объемных рукавов до облегающих кроев. Прозрачные детали, каменная вышивка и современные драпировки особенно выделяются в вечерних платьях. Любители моды, которые ищут 'модные платья 2026', открывают для себя изысканные дизайны U7 Studio. Поймайте новый сезон заранее." },
+        { title:"💎 Переосмысление элегантности с U7 Studio", content:"Для тех, кто ищет инновации каждый сезон, U7 Studio Fashion — вдохновляющая остановка. В весенне-летней коллекции 2026 года на передний план выходят струящиеся ткани, акценты из натуральных камней и бутиковое мастерство. Мы вдохновляем тех, кто хочет следить за модой, с помощью закулисных кадров и процессов дизайна. Для тех, кто ищет 'модные платья 2026', U7 Studio предлагает вневременную элегантность за пределами тенденций." },
+        { title:"📸 От красной дорожки до повседневного стиля: платья U7 Studio", content:"Прогнозы моды на 2026 год указывают на универсальность одежды. U7 Studio Fashion сопровождает каждый момент вашей жизни: от дневной элегантности до вечерних вечеринок. Инновационные крои и смелые цветовые палитры выводят бренд в топ списков любителей моды. Для тех, кто хочет следить за модой, U7 Studio предлагает сюрпризы в каждой коллекции. Самые популярные модели 2026 года ждут вас." },
+        { title:"🌟 U7 Studio Fashion: Самые вдохновляющие тренды 2026", content:"В сегодняшних быстро меняющихся модных динамиках U7 Studio Fashion выделяется своим новаторским духом. Коллекция нового сезона сочетает винтажные нотки, футуристические аксессуары и экологические ткани. Особые дизайнерские модели и лимитированные вещи привлекают большое внимание тех, кто хочет выделиться среди модных платьев 2026. U7 Studio, любимец влиятельных лиц, следящих за модой, поможет развить ваш стиль." }
+      ]
+    },
+    es: {
+      nav1:'Corporativo', nav2:'Colección', nav3:'Contacto', eyebrow:'U7 Studio Fashion', h1strong:'2026', titleShop:'U7 Shop',
+      labelKoleksiyon:'Colección', labelIletisim:'Contacto', contactTitle:'Contáctenos', adresLabel:'Dirección',
+      adresText:'MAH. YENIDOĞAN, CALLE KARAKAŞ, CENTRO CEM<br>N.º: 1-3 PUERTA INT.: 201<br>BAYRAMPAŞA / ESTAMBUL',
+      telLabel:'Teléfono', wpLabel:'WhatsApp', ctaOrder:'Pedido WhatsApp', ctaCall:'Llamar ahora', igText:'Instagram', wpText:'WhatsApp',
+      footerKurumsal:'Corporativo', footerKoleksiyon:'Colección', footerIletisim:'Contacto', footerIg:'Instagram', footerCopy:'© 2026 U7 Studio Fashion. Todos los derechos reservados.',
+      articles: [
+        { title:"✨ Tendencias de Moda 2026: La Diferencia U7 Studio", content:"El año 2026 deja su huella en el mundo de la moda como un período donde el minimalismo se encuentra con texturas audaces. U7 Studio Fashion ofrece líneas sofisticadas en vestidos de nueva temporada con tejidos sostenibles y cortes innovadores. Los aspectos más destacados incluyen vestidos de seda fluidos, dobladillos asimétricos y la armonía de tonos pastel y tierra. Para quienes siguen la moda de cerca, la colección U7 Studio será una parte indispensable de cada armario." },
+        { title:"👗 Siluetas de Vestido del Futuro: U7 Studio 2026", content:"La libertad y la expresión ocupan un lugar central en la moda del próximo año. La colección 2026 de U7 Studio Fashion presenta una amplia gama que va desde mangas voluminosas hasta cortes ajustados al cuerpo. Los detalles transparentes, los adornos de piedra y los drapeados modernos destacan especialmente en los vestidos de noche. Los entusiastas de la moda que buscan 'vestidos de moda 2026' descubren los diseños sofisticados de U7 Studio. Atrapa la nueva temporada con anticipación." },
+        { title:"💎 Redefiniendo la Elegancia con U7 Studio", content:"Para aquellos que buscan innovación cada temporada, U7 Studio Fashion es una parada inspiradora. En la colección primavera-verano 2026 destacan las telas fluidas, los acentos de piedras naturales y la artesanía de boutique. Inspiramos a quienes quieren seguir la moda de cerca con imágenes detrás de escena y procesos de diseño. Para quienes buscan 'vestidos de moda 2026', U7 Studio ofrece una elegancia atemporal más allá de las tendencias." },
+        { title:"📸 De la Alfombra Roja al Estilo Diario: Vestidos U7 Studio", content:"Los pronósticos de moda para 2026 apuntan a la versatilidad en la vestimenta. U7 Studio Fashion acompaña cada momento de tu vida, desde la elegancia diurna hasta las fiestas nocturnas. Los cortes innovadores y las paletas de colores atrevidos llevan a la marca a la cima de las listas de los amantes de la moda. Para aquellos que quieren seguir la moda de cerca, U7 Studio ofrece sorpresas en cada colección. Las piezas más populares de 2026 te esperan." },
+        { title:"🌟 U7 Studio Fashion: Las Tendencias Más Inspiradoras de 2026", content:"En la dinámica de la moda actual que cambia rápidamente, U7 Studio Fashion se destaca por su espíritu pionero. La colección de la nueva temporada combina toques vintage, accesorios futuristas y tejidos ecológicos. Los modelos de diseño especial y las piezas limitadas atraen una gran atención para aquellos que quieren marcar la diferencia entre los vestidos de moda 2026. U7 Studio, el favorito de los influencers que siguen la moda de cerca, evolucionará tu estilo." }
+      ]
+    }
+  };
+
+  function renderArticles(langCode) {
+    const container = document.getElementById('dynamicArticles');
+    const articles = langData[langCode].articles;
+    if(!container) return;
+    const videoSources = ['https://www.u7studiofashion.com/images/1.mp4','https://www.u7studiofashion.com/images/2.mp4','https://www.u7studiofashion.com/images/3.mp4','https://www.u7studiofashion.com/images/4.mp4','https://www.u7studiofashion.com/images/5.mp4'];
+    let html = '';
+    articles.forEach((art, idx) => {
+      html += `
+        <div class="video-article-block">
+          <div class="video-block"><video src="${videoSources[idx % videoSources.length]}" autoplay muted loop playsinline></video></div>
+          <div class="seo-article"><h3>${art.title}</h3><p>${art.content}</p></div>
+        </div>
+      `;
+    });
+    container.innerHTML = html;
+  }
+
+  function setLang(lang) {
+    if(!langData[lang]) lang = 'tr';
+    const t = langData[lang];
+    // menüler
+    document.querySelectorAll('.nav-kurumsal, .mobile-kurumsal, .footer-kurumsal').forEach(el => el.textContent = t.nav1);
+    document.querySelectorAll('.nav-koleksiyon, .mobile-koleksiyon, .footer-koleksiyon').forEach(el => el.textContent = t.nav2);
+    document.querySelectorAll('.nav-iletisim, .mobile-iletisim, .footer-iletisim').forEach(el => el.textContent = t.nav3);
+    document.querySelectorAll('.footer-ig').forEach(el => el.textContent = t.footerIg);
+    // hero
+    if(document.querySelector('.collection-eyebrow')) document.querySelector('.collection-eyebrow').textContent = t.eyebrow;
+    if(document.querySelector('.collection-title strong')) document.querySelector('.collection-title strong').textContent = t.h1strong;
+    if(document.querySelector('.title-shop')) document.querySelector('.title-shop').textContent = t.titleShop;
+    // labels
+    if(document.querySelector('.label-koleksiyon')) document.querySelector('.label-koleksiyon').textContent = t.labelKoleksiyon;
+    if(document.querySelector('.label-iletisim')) document.querySelector('.label-iletisim').textContent = t.labelIletisim;
+    if(document.querySelector('.contact-title')) document.querySelector('.contact-title').textContent = t.contactTitle;
+    if(document.querySelector('.adres-label')) document.querySelector('.adres-label').textContent = t.adresLabel;
+    if(document.querySelector('.adres-text')) document.querySelector('.adres-text').innerHTML = t.adresText;
+    if(document.querySelector('.tel-label')) document.querySelector('.tel-label').textContent = t.telLabel;
+    if(document.querySelector('.wp-label')) document.querySelector('.wp-label').textContent = t.wpLabel;
+    if(document.querySelector('.cta-order')) document.querySelector('.cta-order').textContent = t.ctaOrder;
+    if(document.querySelector('.cta-call')) document.querySelector('.cta-call').textContent = t.ctaCall;
+    if(document.querySelector('.ig-text')) document.querySelector('.ig-text').textContent = t.igText;
+    if(document.querySelector('.wp-text')) document.querySelector('.wp-text').textContent = t.wpText;
+    if(document.querySelector('.footer-copy')) document.querySelector('.footer-copy').textContent = t.footerCopy;
+    
+    // makaleler
+    renderArticles(lang);
+    
+    // aktif dil butonu vurgusu
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      if(btn.getAttribute('data-lang') === lang) btn.classList.add('active');
+      else btn.classList.remove('active');
+    });
+  }
   
-  function setLang(lang) { const t = translations[lang]; document.querySelectorAll('.nav-kurumsal').forEach(el => el.textContent = t.nav1); document.querySelectorAll('.nav-koleksiyon').forEach(el => el.textContent = t.nav2); document.querySelectorAll('.nav-iletisim').forEach(el => el.textContent = t.nav3); if(document.querySelector('.collection-eyebrow')) document.querySelector('.collection-eyebrow').textContent = t.eyebrow; if(document.querySelector('.collection-title strong')) document.querySelector('.collection-title strong').textContent = t.h1strong; if(document.querySelector('.title-shop')) document.querySelector('.title-shop').textContent = t.titleShop; if(document.querySelector('.label-koleksiyon')) document.querySelector('.label-koleksiyon').textContent = t.labelKoleksiyon; if(document.querySelector('.label-iletisim')) document.querySelector('.label-iletisim').textContent = t.labelIletisim; if(document.querySelector('.contact-title')) document.querySelector('.contact-title').textContent = t.contactTitle; if(document.querySelector('.adres-label')) document.querySelector('.adres-label').textContent = t.adresLabel; if(document.querySelector('.adres-text')) document.querySelector('.adres-text').innerHTML = t.adresText; if(document.querySelector('.tel-label')) document.querySelector('.tel-label').textContent = t.telLabel; if(document.querySelector('.wp-label')) document.querySelector('.wp-label').textContent = t.wpLabel; if(document.querySelector('.cta-order')) document.querySelector('.cta-order').textContent = t.ctaOrder; if(document.querySelector('.cta-call')) document.querySelector('.cta-call').textContent = t.ctaCall; if(document.querySelector('.ig-text')) document.querySelector('.ig-text').textContent = t.igText; if(document.querySelector('.wp-text')) document.querySelector('.wp-text').textContent = t.wpText; document.querySelectorAll('.footer-kurumsal').forEach(el => el.textContent = t.footerKurumsal); document.querySelectorAll('.footer-koleksiyon').forEach(el => el.textContent = t.footerKoleksiyon); document.querySelectorAll('.footer-iletisim').forEach(el => el.textContent = t.footerIletisim); document.querySelectorAll('.footer-ig').forEach(el => el.textContent = t.footerIg); if(document.querySelector('.footer-copy')) document.querySelector('.footer-copy').textContent = t.footerCopy; }
+  // dil butonlarına olay dinleyicisi
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const lang = btn.getAttribute('data-lang');
+      setLang(lang);
+    });
+  });
   
-  window.setLang = setLang; window.openLightbox = openLightbox; window.closeLightbox = closeLightbox; window.closeLightboxOutside = closeLightboxOutside; window.toggleMenu = toggleMenu;
+  // başlangıç dili türkçe
+  setLang('tr');
+  
+  window.openLightbox = openLightbox;
+  window.closeLightbox = closeLightbox;
+  window.closeLightboxOutside = closeLightboxOutside;
+  window.toggleMenu = toggleMenu;
 </script>
 </body>
 </html>
