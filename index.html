@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="U7 Studio Fashion - 2026 Koleksiyon">
+<title>U7 Studio Fashion | 2026 Koleksiyon</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --white: #ffffff;
+    --off-white: #fafafa;
+    --light-gray: #f4f4f4;
+    --mid-gray: #e0e0e0;
+    --text-dark: #111111;
+    --text-mid: #555555;
+    --text-light: #999999;
+    --accent: #1a1a1a;
+    --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--white);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--white);
+    border-bottom: 1px solid var(--mid-gray);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    transition: box-shadow var(--transition);
+  }
+
+  header.shrunk {
+    box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+  }
+
+  /* ── LANG BAR (inside header, top row) ── */
+  .lang-bar {
+    background: var(--white);
+    border-bottom: 1px solid var(--mid-gray);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 6px 40px;
+    gap: 4px;
+    transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+    max-height: 40px;
+    overflow: hidden;
+  }
+
+  header.shrunk .lang-bar {
+    max-height: 0;
+    opacity: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .lang-btn {
+    background: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    padding: 4px 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    color: var(--text-mid);
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    white-space: nowrap;
+  }
+
+  .lang-btn:hover, .lang-btn.active {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--light-gray);
+  }
+
+  .lang-btn .flag { font-size: 13px; }
+
+  .header-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 40px;
+    transition: padding var(--transition);
+  }
+
+  header.shrunk .header-inner { padding: 8px 40px; }
+
+  .logo img {
+    height: 48px;
+    object-fit: contain;
+    transition: height var(--transition);
+    display: block;
+  }
+
+  header.shrunk .logo img { height: 34px; }
+
+  nav { display: flex; align-items: center; gap: 36px; }
+
+  nav a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    position: relative;
+    padding-bottom: 4px;
+    transition: color 0.2s;
+  }
+
+  nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 1px;
+    background: var(--accent);
+    transition: width 0.3s ease;
+  }
+
+  nav a:hover::after, nav a.active::after { width: 100%; }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 4px;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 1.5px;
+    background: var(--accent);
+    transition: all 0.3s;
+  }
+
+  .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  .mobile-nav {
+    display: none;
+    flex-direction: column;
+    background: var(--white);
+    border-top: 1px solid var(--mid-gray);
+    padding: 20px 40px;
+    gap: 20px;
+  }
+
+  .mobile-nav.open { display: flex; }
+  .mobile-nav a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ── HERO TITLE ── */
+  .collection-hero {
+    text-align: center;
+    padding: 70px 40px 40px;
+    background: var(--white);
+  }
+
+  .collection-hero .eyebrow {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-bottom: 14px;
+  }
+
+  .collection-hero h1 {
+    font-size: clamp(28px, 5vw, 52px);
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dark);
+    line-height: 1.2;
+  }
+
+  .collection-hero h1 strong {
+    font-weight: 700;
+    display: block;
+  }
+
+  .collection-hero .divider {
+    width: 40px;
+    height: 1px;
+    background: var(--accent);
+    margin: 24px auto 0;
+  }
+
+  /* ── PRODUCT GRID ── */
+  .grid-section {
+    padding: 40px 40px 80px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+
+  .product-item {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    background: var(--light-gray);
+    aspect-ratio: 3/4;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .product-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .product-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.7s var(--transition), opacity 0.3s;
+  }
+
+  .product-item:hover img {
+    transform: scale(1.06);
+    opacity: 0.92;
+  }
+
+  /* ── LIGHTBOX ── */
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.88);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .lightbox.open { display: flex; }
+
+  .lightbox-inner {
+    position: relative;
+    max-width: 720px;
+    width: 100%;
+    max-height: 92vh;
+  }
+
+  .lightbox-inner img {
+    width: 100%;
+    max-height: 85vh;
+    object-fit: contain;
+    display: block;
+    border-radius: 2px;
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+    line-height: 1;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+
+  .lightbox-close:hover { opacity: 1; }
+
+  .lightbox-cta {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .lightbox-cta a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border-radius: 3px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: opacity 0.2s, transform 0.2s;
+    cursor: pointer;
+  }
+
+  .lightbox-cta a:hover { opacity: 0.85; transform: translateY(-1px); }
+
+  .btn-whatsapp {
+    background: #25D366;
+    color: white;
+  }
+
+  .btn-call {
+    background: white;
+    color: #111;
+  }
+
+  .lightbox-cta a svg { flex-shrink: 0; }
+
+  /* ── SECTION DIVIDER ── */
+  .section-label {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px 28px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .section-label span {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    white-space: nowrap;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--mid-gray);
+  }
+
+  /* ── VIDEO SECTION ── */
+  .video-section {
+    background: var(--off-white);
+    padding: 70px 40px;
+    border-top: 1px solid var(--mid-gray);
+    border-bottom: 1px solid var(--mid-gray);
+  }
+
+  .video-section-title {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .video-section-title .eyebrow {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-bottom: 12px;
+  }
+
+  .video-section-title h2 {
+    font-size: clamp(20px, 3vw, 32px);
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .video-scroll-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    display: flex;
+    gap: 20px;
+    padding-bottom: 12px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--mid-gray) transparent;
+  }
+
+  .video-scroll-wrapper::-webkit-scrollbar { height: 4px; }
+  .video-scroll-wrapper::-webkit-scrollbar-track { background: transparent; }
+  .video-scroll-wrapper::-webkit-scrollbar-thumb { background: var(--mid-gray); border-radius: 2px; }
+
+  .video-item {
+    flex: 0 0 300px;
+    scroll-snap-align: start;
+    background: #000;
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .video-item video {
+    width: 100%;
+    height: 520px;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ── CONTACT SECTION ── */
+  #iletisim {
+    padding: 80px 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .contact-info h2 {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-bottom: 30px;
+  }
+
+  .contact-detail {
+    margin-bottom: 22px;
+  }
+
+  .contact-detail .label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-bottom: 6px;
+  }
+
+  .contact-detail p, .contact-detail a {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text-dark);
+    text-decoration: none;
+    line-height: 1.6;
+    display: block;
+  }
+
+  .contact-detail a:hover { text-decoration: underline; }
+
+  .social-row {
+    display: flex;
+    gap: 14px;
+    margin-top: 30px;
+  }
+
+  .social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 16px;
+    border: 1px solid var(--mid-gray);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--text-dark);
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+
+  .social-link:hover {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+  }
+
+  .map-container {
+    border-radius: 2px;
+    overflow: hidden;
+    border: 1px solid var(--mid-gray);
+  }
+
+  .map-container iframe {
+    width: 100%;
+    height: 380px;
+    display: block;
+    border: 0;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--accent);
+    color: rgba(255,255,255,0.6);
+    padding: 40px 40px;
+  }
+
+  .footer-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .footer-logo img {
+    height: 34px;
+    opacity: 0.8;
+    filter: brightness(0) invert(1);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 28px;
+  }
+
+  .footer-links a {
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: white; }
+
+  .footer-copy {
+    font-size: 10px;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1100px) {
+    .product-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  @media (max-width: 768px) {
+    .lang-bar { padding: 6px 20px; gap: 4px; }
+    .lang-btn { padding: 3px 7px; font-size: 10px; }
+    .header-inner { padding: 10px 20px; }
+    header.shrunk .header-inner { padding: 7px 20px; }
+    .collection-hero { padding: 48px 20px 28px; }
+    .grid-section { padding: 24px 20px 60px; }
+    .section-label { padding: 0 20px 20px; }
+    .product-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .video-section { padding: 50px 20px; }
+    .video-item { flex: 0 0 220px; }
+    .video-item video { height: 380px; }
+    #iletisim { padding: 60px 20px; }
+    .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    footer { padding: 30px 20px; }
+    .footer-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
+  }
+
+  @media (max-width: 480px) {
+    .product-grid { grid-template-columns: 1fr; gap: 12px; }
+    .product-item { aspect-ratio: 4/5; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header id="mainHeader">
+  <!-- DİL ÇUBUĞU -->
+  <div class="lang-bar">
+    <button class="lang-btn active" onclick="setLang('tr')"><span class="flag">🇹🇷</span> Türkçe</button>
+    <button class="lang-btn" onclick="setLang('en')"><span class="flag">🇬🇧</span> English</button>
+    <button class="lang-btn" onclick="setLang('ru')"><span class="flag">🇷🇺</span> Русский</button>
+    <button class="lang-btn" onclick="setLang('es')"><span class="flag">🇪🇸</span> Español</button>
+  </div>
+  <!-- LOGO + NAV -->
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <img src="https://www.u7studiofashion.com/images/logo.webp" alt="U7 Studio Fashion Logo">
+    </a>
+    <nav>
+      <a href="#kurumsal" class="nav-kurumsal">Kurumsal</a>
+      <a href="#koleksiyon" class="nav-koleksiyon active">Koleksiyon</a>
+      <a href="#iletisim" class="nav-iletisim">İletişim</a>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="Menü" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="#kurumsal" onclick="toggleMenu()" class="nav-kurumsal">Kurumsal</a>
+  <a href="#koleksiyon" onclick="toggleMenu()" class="nav-koleksiyon">Koleksiyon</a>
+  <a href="#iletisim" onclick="toggleMenu()" class="nav-iletisim">İletişim</a>
+</div>
+
+<!-- COLLECTION HERO -->
+<section class="collection-hero" id="koleksiyon">
+  <p class="collection-eyebrow eyebrow">U7 Studio Fashion</p>
+  <h1 class="collection-title"><strong>2026</strong> <span class="title-shop">U7 Shop</span></h1>
+  <div class="divider"></div>
+</section>
+
+<!-- PRODUCT GRID -->
+<div class="section-label">
+  <span class="label-koleksiyon">Koleksiyon</span>
+</div>
+
+<section class="grid-section" id="kurumsal">
+  <div class="product-grid">
+    <article class="product-item" onclick="openLightbox(this)">
+      <img src="https://www.u7studiofashion.com/images/1.webp" alt="U7 Studio Fashion Ürün 1" loading="lazy">
+    </article>
+    <article class="product-item" onclick="openLightbox(this)">
+      <img src="https://www.u7studiofashion.com/images/2.webp" alt="U7 Studio Fashion Ürün 2" loading="lazy">
+    </article>
+    <article class="product-item" onclick="openLightbox(this)">
+      <img src="https://www.u7studiofashion.com/images/3.webp" alt="U7 Studio Fashion Ürün 3" loading="lazy">
+    </article>
+    <article class="product-item" onclick="openLightbox(this)">
+      <img src="https://www.u7studiofashion.com/images/4.webp" alt="U7 Studio Fashion Ürün 4" loading="lazy">
+    </article>
+    <article class="product-item" onclick="openLightbox(this)">
+      <img src="https://www.u7studiofashion.com/images/5.webp" alt="U7 Studio Fashion Ürün 5" loading="lazy">
+    </article>
+    <article class="product-item" onclick="openLightbox(this)">
+      <img src="https://www.u7studiofashion.com/images/6.webp" alt="U7 Studio Fashion Ürün 6" loading="lazy">
+    </article>
+    <article class="product-item" onclick="openLightbox(this)">
+      <img src="https://www.u7studiofashion.com/images/7.webp" alt="U7 Studio Fashion Ürün 7" loading="lazy">
+    </article>
+    <article class="product-item" onclick="openLightbox(this)">
+      <img src="https://www.u7studiofashion.com/images/8.webp" alt="U7 Studio Fashion Ürün 8" loading="lazy">
+    </article>
+    <article class="product-item" onclick="openLightbox(this)">
+      <img src="https://www.u7studiofashion.com/images/9.webp" alt="U7 Studio Fashion Ürün 9" loading="lazy">
+    </article>
+    <article class="product-item" onclick="openLightbox(this)">
+      <img src="https://www.u7studiofashion.com/images/10.webp" alt="U7 Studio Fashion Ürün 10" loading="lazy">
+    </article>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightboxOutside(event)">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <img id="lightboxImg" src="" alt="Ürün Detay">
+    <div class="lightbox-cta">
+      <a href="https://wa.me/905348118440" target="_blank" class="btn-whatsapp">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <span class="cta-order">WhatsApp Sipariş</span>
+      </a>
+      <a href="tel:02124380937" class="btn-call">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.09a16 16 0 006 6l.27-.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        <span class="cta-call">Hemen Ara</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- VIDEO SECTION -->
+<section class="video-section">
+  <div class="video-section-title">
+    <p class="eyebrow video-eyebrow">Backstage &amp; Campaign</p>
+    <h2 class="video-title">Lookbook 2026</h2>
+  </div>
+  <div class="video-scroll-wrapper">
+    <div class="video-item">
+      <video src="https://www.u7studiofashion.com/images/1.mp4" autoplay muted loop playsinline></video>
+    </div>
+    <div class="video-item">
+      <video src="https://www.u7studiofashion.com/images/2.mp4" autoplay muted loop playsinline></video>
+    </div>
+    <div class="video-item">
+      <video src="https://www.u7studiofashion.com/images/3.mp4" autoplay muted loop playsinline></video>
+    </div>
+    <div class="video-item">
+      <video src="https://www.u7studiofashion.com/images/4.mp4" autoplay muted loop playsinline></video>
+    </div>
+    <div class="video-item">
+      <video src="https://www.u7studiofashion.com/images/5.mp4" autoplay muted loop playsinline></video>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="iletisim">
+  <div class="section-label" style="padding-left:0; padding-right:0;">
+    <span class="label-iletisim">İletişim</span>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <h2 class="contact-title">Bize Ulaşın</h2>
+
+      <div class="contact-detail">
+        <p class="label adres-label">Adres</p>
+        <p class="adres-text">YENİDOĞAN MAH. KARAKAŞ SK. CEM İŞ MERKEZİ<br>NO: 1-3 İÇ KAPI NO:201<br>BAYRAMPAŞA / İSTANBUL</p>
+      </div>
+
+      <div class="contact-detail">
+        <p class="label tel-label">Telefon</p>
+        <a href="tel:02124380937" class="tel1">0212 438 09 37</a>
+      </div>
+
+      <div class="contact-detail">
+        <p class="label wp-label">WhatsApp</p>
+        <a href="https://wa.me/905348118440" target="_blank" class="wp-num">+90 (534) 811 84 40</a>
+      </div>
+
+      <div class="social-row">
+        <a href="https://www.instagram.com/u7.studiofashion" target="_blank" class="social-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          <span class="ig-text">Instagram</span>
+        </a>
+        <a href="https://wa.me/905348118440" target="_blank" class="social-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          <span class="wp-text">WhatsApp</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="map-container">
+      <iframe
+        src="https://yandex.com.tr/map-widget/v1/org/cem_is_merkezi/26709226994/?ll=28.913203%2C41.046218&z=16"
+        width="560" height="380" frameborder="0" allowfullscreen="true"
+        title="U7 Studio Fashion Konum"
+        loading="lazy">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <img src="https://www.u7studiofashion.com/images/logo.webp" alt="U7 Studio Fashion">
+    </div>
+    <nav class="footer-links">
+      <a href="#kurumsal" class="footer-kurumsal">Kurumsal</a>
+      <a href="#koleksiyon" class="footer-koleksiyon">Koleksiyon</a>
+      <a href="#iletisim" class="footer-iletisim">İletişim</a>
+      <a href="https://www.instagram.com/u7.studiofashion" target="_blank" class="footer-ig">Instagram</a>
+    </nav>
+    <p class="footer-copy">© 2026 U7 Studio Fashion. Tüm hakları saklıdır.</p>
+  </div>
+</footer>
+
+<script>
+// ── TRANSLATIONS ──
+const translations = {
+  tr: {
+    nav1: 'Kurumsal', nav2: 'Koleksiyon', nav3: 'İletişim',
+    eyebrow: 'U7 Studio Fashion',
+    h1strong: '2026', titleShop: 'U7 Shop',
+    labelKoleksiyon: 'Koleksiyon',
+    videoEyebrow: 'Backstage & Campaign',
+    videoTitle: 'Lookbook 2026',
+    labelIletisim: 'İletişim',
+    contactTitle: 'Bize Ulaşın',
+    adresLabel: 'Adres',
+    adresText: 'YENİDOĞAN MAH. KARAKAŞ SK. CEM İŞ MERKEZİ<br>NO: 1-3 İÇ KAPI NO:201<br>BAYRAMPAŞA / İSTANBUL',
+    telLabel: 'Telefon',
+    wpLabel: 'WhatsApp',
+    ctaOrder: 'WhatsApp Sipariş',
+    ctaCall: 'Hemen Ara',
+    igText: 'Instagram',
+    wpText: 'WhatsApp',
+    footerKurumsal: 'Kurumsal', footerKoleksiyon: 'Koleksiyon', footerIletisim: 'İletişim', footerIg: 'Instagram',
+    footerCopy: '© 2026 U7 Studio Fashion. Tüm hakları saklıdır.',
+    langBtn: ['🇹🇷 Türkçe','🇬🇧 English','🇷🇺 Русский','🇪🇸 Español']
+  },
+  en: {
+    nav1: 'Corporate', nav2: 'Collection', nav3: 'Contact',
+    eyebrow: 'U7 Studio Fashion',
+    h1strong: '2026', titleShop: 'U7 Shop',
+    labelKoleksiyon: 'Collection',
+    videoEyebrow: 'Backstage & Campaign',
+    videoTitle: 'Lookbook 2026',
+    labelIletisim: 'Contact',
+    contactTitle: 'Get In Touch',
+    adresLabel: 'Address',
+    adresText: 'YENİDOĞAN MAH. KARAKAŞ SK. CEM BUSINESS CENTER<br>NO: 1-3 INT. DOOR:201<br>BAYRAMPAŞA / ISTANBUL',
+    telLabel: 'Phone',
+    wpLabel: 'WhatsApp',
+    ctaOrder: 'WhatsApp Order',
+    ctaCall: 'Call Now',
+    igText: 'Instagram',
+    wpText: 'WhatsApp',
+    footerKurumsal: 'Corporate', footerKoleksiyon: 'Collection', footerIletisim: 'Contact', footerIg: 'Instagram',
+    footerCopy: '© 2026 U7 Studio Fashion. All rights reserved.',
+    langBtn: ['🇹🇷 Türkçe','🇬🇧 English','🇷🇺 Русский','🇪🇸 Español']
+  },
+  ru: {
+    nav1: 'О компании', nav2: 'Коллекция', nav3: 'Контакты',
+    eyebrow: 'U7 Studio Fashion',
+    h1strong: '2026', titleShop: 'U7 Shop',
+    labelKoleksiyon: 'Коллекция',
+    videoEyebrow: 'За кулисами',
+    videoTitle: 'Lookbook 2026',
+    labelIletisim: 'Контакты',
+    contactTitle: 'Свяжитесь с нами',
+    adresLabel: 'Адрес',
+    adresText: 'МАХ. ЕНИДОАН, УЛ. КАРАКА, БИЗ. ЦЕНТР CEM<br>НОМ: 1-3, ВН. ДВЕРЬ: 201<br>БАЙРАМПАША / СТАМБУЛ',
+    telLabel: 'Телефон',
+    wpLabel: 'WhatsApp',
+    ctaOrder: 'Заказ WhatsApp',
+    ctaCall: 'Позвонить',
+    igText: 'Instagram',
+    wpText: 'WhatsApp',
+    footerKurumsal: 'О компании', footerKoleksiyon: 'Коллекция', footerIletisim: 'Контакты', footerIg: 'Instagram',
+    footerCopy: '© 2026 U7 Studio Fashion. Все права защищены.',
+    langBtn: ['🇹🇷 Türkçe','🇬🇧 English','🇷🇺 Русский','🇪🇸 Español']
+  },
+  es: {
+    nav1: 'Corporativo', nav2: 'Colección', nav3: 'Contacto',
+    eyebrow: 'U7 Studio Fashion',
+    h1strong: '2026', titleShop: 'U7 Shop',
+    labelKoleksiyon: 'Colección',
+    videoEyebrow: 'Backstage & Campaña',
+    videoTitle: 'Lookbook 2026',
+    labelIletisim: 'Contacto',
+    contactTitle: 'Contáctenos',
+    adresLabel: 'Dirección',
+    adresText: 'MAH. YENIDOĞAN, CALLE KARAKAŞ, CENTRO CEM<br>N.º: 1-3 PUERTA INT.: 201<br>BAYRAMPAŞA / ESTAMBUL',
+    telLabel: 'Teléfono',
+    wpLabel: 'WhatsApp',
+    ctaOrder: 'Pedido WhatsApp',
+    ctaCall: 'Llamar ahora',
+    igText: 'Instagram',
+    wpText: 'WhatsApp',
+    footerKurumsal: 'Corporativo', footerKoleksiyon: 'Colección', footerIletisim: 'Contacto', footerIg: 'Instagram',
+    footerCopy: '© 2026 U7 Studio Fashion. Todos los derechos reservados.',
+    langBtn: ['🇹🇷 Türkçe','🇬🇧 English','🇷🇺 Русский','🇪🇸 Español']
+  }
+};
+
+function setLang(lang) {
+  const t = translations[lang];
+  document.querySelectorAll('.lang-btn').forEach((btn, i) => {
+    btn.classList.toggle('active', ['tr','en','ru','es'][i] === lang);
+    btn.innerHTML = `<span class="flag">${t.langBtn[i].split(' ')[0]}</span> ${t.langBtn[i].split(' ').slice(1).join(' ')}`;
+  });
+  document.querySelectorAll('.nav-kurumsal').forEach(el => el.textContent = t.nav1);
+  document.querySelectorAll('.nav-koleksiyon').forEach(el => el.textContent = t.nav2);
+  document.querySelectorAll('.nav-iletisim').forEach(el => el.textContent = t.nav3);
+  document.querySelector('.collection-eyebrow').textContent = t.eyebrow;
+  document.querySelector('.collection-title strong').textContent = t.h1strong;
+  document.querySelector('.title-shop').textContent = t.titleShop;
+  document.querySelector('.label-koleksiyon').textContent = t.labelKoleksiyon;
+  document.querySelector('.video-eyebrow').textContent = t.videoEyebrow;
+  document.querySelector('.video-title').textContent = t.videoTitle;
+  document.querySelector('.label-iletisim').textContent = t.labelIletisim;
+  document.querySelector('.contact-title').textContent = t.contactTitle;
+  document.querySelector('.adres-label').textContent = t.adresLabel;
+  document.querySelector('.adres-text').innerHTML = t.adresText;
+  document.querySelector('.tel-label').textContent = t.telLabel;
+  document.querySelector('.wp-label').textContent = t.wpLabel;
+  document.querySelector('.cta-order').textContent = t.ctaOrder;
+  document.querySelector('.cta-call').textContent = t.ctaCall;
+  document.querySelector('.ig-text').textContent = t.igText;
+  document.querySelector('.wp-text').textContent = t.wpText;
+  document.querySelectorAll('.footer-kurumsal').forEach(el => el.textContent = t.footerKurumsal);
+  document.querySelectorAll('.footer-koleksiyon').forEach(el => el.textContent = t.footerKoleksiyon);
+  document.querySelectorAll('.footer-iletisim').forEach(el => el.textContent = t.footerIletisim);
+  document.querySelectorAll('.footer-ig').forEach(el => el.textContent = t.footerIg);
+  document.querySelector('.footer-copy').textContent = t.footerCopy;
+}
+
+// ── HEADER SHRINK ──
+window.addEventListener('scroll', () => {
+  document.getElementById('mainHeader').classList.toggle('shrunk', window.scrollY > 60);
+});
+
+// ── HAMBURGER ──
+function toggleMenu() {
+  const btn = document.getElementById('hamburger');
+  const nav = document.getElementById('mobileNav');
+  btn.classList.toggle('open');
+  nav.classList.toggle('open');
+}
+
+// ── LIGHTBOX ──
+function openLightbox(el) {
+  const src = el.querySelector('img').src;
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeLightboxOutside(e) {
+  if (e.target === document.getElementById('lightbox')) closeLightbox();
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+// ── SCROLL FADE-IN ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 60);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.product-item').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
